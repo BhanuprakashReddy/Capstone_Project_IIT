@@ -1,2 +1,4 @@
-# Capstone_Project_IIT
+# Capstone_Project_IIIT
 Retrieval-Augmented Generation ( RAG )
+
+
