@@ -1,0 +1,112 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\title{AI based RAG Capstone NSE talentsprint IIIT Hyd}
+\author{Rahul, Sridhar, Bhanu, Santosh}
+\date{Feb 15, 2025}
+
+\begin{document}
+
+\maketitle
+
+\section*{Mentors and ProjectSupervisor:}
+\begin{itemize}
+    \item Gopichand, Lokesh
+    \item Dr. Manish Shrivastava
+\end{itemize}
+
+\tableofcontents
+
+\section{Introduction and Problem Description}
+
+RAG systems are prone to hallucinations as the generator model struggles to retrieve relevant information from the context. Tuning an optimal system for a particular RAG application involves iterative evaluation of multiple configurations.  
+
+\subsection{Dataset}
+We used the ragbench dataset from Hugging Face, available at https://huggingface.co/datasets/rungalileo/ragbench. This dataset is designed for evaluating Retrieval-Augmented Generation (RAG) systems and contains a variety of question-answer pairs along with relevant documents and evaluation metrics.
+The dataset is split into training, validation, and test sets:
+
+
+
+\subsection{Data Preprocessing}
+The ragbench dataset is already preprocessed and structured for RAG evaluation. It includes the following key fields:
+
+\begin{itemize}
+    \item question: The input query
+    \item documents: A sequence of relevant documents for each query
+    \item response: The generated response
+    \item documents\_sentences: Sentences from the relevant documents
+    \item response\_sentences: Sentences from the generated response
+    \item sentence\_support\_information: Information about how each response sentence is supported by the documents
+    \item adherence\_score: A boolean indicating overall adherence of the response to the documents
+\end{itemize}
+ 
+
+\subsection{Models Used}
+
+We fine-tuned and evaluated several models for the task. The following table provides an overview of the models used:
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Model & Training Notebook \\
+\hline
+Mistral, QWEN, DEEPSEEL& RAG_Capstone_grp2
+/Rahul_llm_RAG_grp2_AIML_Capstone.ipynb\\
+T5 Small and T5 base& Being small transformer models, were just used initially\\
+GPT 3o mini& Due to high cost, only used for learning\\
+& \\
+\hline
+\end{tabular}
+\end{center}
+
+Table 1: Models used for training and testing
+
+
+\subsection{RAG Implementation}
+
+The RAG implementation uses vector databases and embeddings for retrieving relevant documents. The following steps were implemented:
+\begin{itemize}
+    \item Load Documents: Load the data into a pandas DataFrame.
+    \item Chunking: Split documents into smaller chunks.
+    \item Embedding: Generate embeddings for each chunk using Hugging Face embeddings.
+    \item Vector Database: Store embeddings in a FAISS vector database.
+    \item Retrieval: Retrieve relevant documents based on user queries.
+    \item LLM Response: Generate responses using the LLM and retrieved documents.
+\end{itemize}
+
+\subsection{Evaluation Metrics}
+
+We computed various evaluation metrics to assess the performance of the RAG system:
+\begin{itemize}
+    \item Context Relevance: Measures the relevance of retrieved documents.
+    \item Context Utilization: Measures the extent to which retrieved information is used by the LLM.
+    \item Completeness: Measures how comprehensive the LLM's response is compared to the original answer.
+    \item Adherence: Measures the factual consistency of the LLM's response.
+    \item Noise Robustness: Measures the system's ability to handle noisy or irrelevant retrieved documents.
+    \item Negative Rejection: Measures the system's ability to reject incorrect or unsupported queries.
+    \item Counterfactual Robustness: Measures the system's resistance to counterfactual information.
+    \item Information Integration: Measures the system's ability to integrate information from multiple sources.
+\end{itemize}
+
+\subsection{Evaluation Results}
+
+The evaluation results show the performance of the RAG system across different datasets and LLMs. Key metrics include context relevance, utilization, completeness, and adherence.
+\begin{itemize}
+    \item Overall Performance: The RAG system demonstrates good performance, with high context relevance and utilization scores.
+    \item Model Comparison: LLAMA3 and Qwen 0.5B models generally outperform DeepSeek in terms of response quality and adherence.
+    \item Dataset Analysis: Performance varies across datasets, with some datasets showing better results due to the quality and relevance of the documents.
+\end{itemize}
+
+\subsection{Observations and Further Reading}
+
+Key observations include the importance of context relevance and utilization in achieving high-quality responses. Further improvements can be made by fine-tuning the LLMs and optimizing the retrieval process.
+
+\section{Conclusion}
+
+It was a great learning experience fine tuning these transformer models to perform a specific task. The nuances of encoder-decoder vs decoder-only models and how it could influence the performance was a great learning experience.
+
+There were engineering issues that these large models caused and we had to figure out ways to deal with them along the way. This task has increased our understanding multifold.
+
+\end{document}
